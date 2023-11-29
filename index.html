@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Importar a fonte do Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'DM Serif Display', serif; /* Aplicar a fonte importada */
+        }
+
+        #container {
+            background-color: white;
+            margin: 20px; /* Adicionar margens ao redor do container */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh; /* Mudar para min-height para garantir que o conteúdo não ultrapasse a altura da tela */
+        }
+
+        #background-image {
+            background-image: url('https://imgix.bustle.com/uploads/image/2023/3/15/98485c4a-484f-4383-99ac-7f55c3cbbc3d-taylor-swift-eras-tour-openers-opening-acts-dates-concerts.jpg?w=800&fit=crop&crop=faces&auto=format%2Ccompress');
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0.8;
+        }
+
+        /* Sombra ao redor da forma branca */
+        #content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1;
+        }
+
+        #options {
+            margin-bottom: 20px;
+        }
+
+        #result {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(149, 125, 236);
+            margin-top: 20px; /* Adicionar espaço acima do resultado */
+        }
+
+        /* Estilo para o botão */
+        button {
+            background-color: hsl(271, 59%, 56%);
+            color: white;
+            padding: 10px 20px;
+            font-size: 13px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0 5px; /* Adicionar margens aos lados dos botões */
+        }
+
+        /* Mudar a cor quando o cursor estiver sobre o botão */
+        button:hover {
+            background-color: hsl(271, 59%, 46%); /* Reduzir um pouco a saturação ao passar o mouse */
+        }
+
+        input {
+            width: calc(100% - 20px); /* Ajustar a largura do input e adicionar margens aos lados */
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc; /* Adicionar uma borda para separar visualmente o input */
+            border-radius: 5px;
+        }
+    </style>
+    <title>Qual é a sua ERA TS?</title>
+</head>
+<body>
+    <div id="container">
+        <div id="background-image"></div>
+        <div id="content">
+            <h1>Qual é a sua ERA TS?</h1>
+
+            <div id="options">
+                <button onclick="insertAlbums()">Clique aqui</button>
+                <label for="optionInput"></label>
+                <input type="text" id="optionInput" placeholder="Debut, Fearless, Speak Now, Red, 1989, Reputation, Lover, Folklore, Evermore, Midnights">
+                <button onclick="generateResult()">Gerar Resultado</button>
+            </div>
+
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function insertAlbums() {
+            var albums = "Debut, Fearless, Speak Now, Red, 1989, Reputation, Lover, Folklore, Evermore, Midnights";
+            document.getElementById('optionInput').value = albums;
+        }
+
+        function generateResult() {
+            var optionInput = document.getElementById('optionInput').value;
+            var options = optionInput.split(',').map(function(item) {
+                return item.trim();
+            });
+
+            if (options.length < 2) {
+                alert('Insira pelo menos dois álbuns separados por vírgula.');
+                return;
+            }
+
+            var randomIndex = Math.floor(Math.random() * options.length);
+            var randomOption = options[randomIndex];
+
+            document.getElementById('result').innerHTML = 'Resultado: ' + randomOption;
+        }
+    </script>
+</body>
+</html>
